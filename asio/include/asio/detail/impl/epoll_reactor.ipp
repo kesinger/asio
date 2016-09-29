@@ -445,8 +445,9 @@ void epoll_reactor::run(long usec, op_queue<operation>& ops)
 
   // Block on the epoll descriptor.
   epoll_event events[128];
+  usleep(10);
   int num_events = epoll_wait(epoll_fd_, events, 128, timeout);
-
+  
 #if defined(ASIO_ENABLE_HANDLER_TRACKING)
   // Trace the waiting events.
   for (int i = 0; i < num_events; ++i)
